@@ -29,18 +29,17 @@ internal class Program
             {
                 odd++;
             }
-
         }
 
         int[] evenArray = new int[even];
         int[] oddArray = new int[odd];
 
         int evenArrayIndex = 0;
-        int oddArrayIndex = 0; 
+        int oddArrayIndex = 0;
 
         for (int i = 0; i < numbers.Length; i++)
         {
-            if (numbers[i]%2==0)
+            if (numbers[i] % 2 == 0)
             {
                 evenArray[evenArrayIndex] = numbers[i];
                 evenArrayIndex++;
@@ -54,13 +53,16 @@ internal class Program
 
         char[] evenCharArray = new char[evenArray.Length];
         char[] oddCharArray = new char[oddArray.Length];
-        
-        char[] letters = { 'A', 'b', 'c', 'D', 'E', 'f', 'g', 'H',
-                           'I', 'J', 'k', 'l', 'm', 'n', 'o', 'p',
-                           'q', 'r', 's', 't', 'u', 'v', 'w', 'x',
-                           'y', 'z'};
 
-        for(int i = 0; i < evenArray.Length; i++)
+        char[] letters =
+        {
+            'A', 'b', 'c', 'D', 'E', 'f', 'g', 'H',
+            'I', 'J', 'k', 'l', 'm', 'n', 'o', 'p',
+            'q', 'r', 's', 't', 'u', 'v', 'w', 'x',
+            'y', 'z',
+        };
+
+        for (int i = 0; i < evenArray.Length; i++)
         {
             evenCharArray[i] = letters[evenArray[i] - 1];
         }
@@ -77,9 +79,9 @@ internal class Program
         PrintArray(oddCharArray);
     }
 
-    public static void PrintArray(char[] array)
+    private static void PrintArray(char[] array)
     {
-        foreach(char c in array)
+        foreach (char c in array)
         {
             Console.Write(c + " ");
         }
