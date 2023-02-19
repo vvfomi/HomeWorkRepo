@@ -27,12 +27,16 @@ public class Logger
         Console.WriteLine(log);
 
         _logs.AppendLine(log);
-        File.WriteAllText("log.txt", _logs.ToString());
     }
 
     public string GetAllLogs()
     {
         return _logs.ToString();
+    }
+
+    public void SaveAllLogsToFile()
+    {
+        File.WriteAllText("log.txt", _logs.ToString());
     }
 }
 
