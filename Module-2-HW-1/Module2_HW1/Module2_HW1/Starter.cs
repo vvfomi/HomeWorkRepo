@@ -11,26 +11,29 @@ public class Starter
         for (int i = 0; i < 100; i++)
         {
             int number = new Random().Next(1, 4);
-            Result result = new Result();
-
-            switch (number)
+            try
             {
-                case 1:
-                    result = actions.GetInfoResult();
-                    break;
-                case 2:
-                    result = actions.GetWarningResult();
-                    break;
-                case 3:
-                    result = actions.GetErrorResult();
-                    break;
+                switch (number)
+                {
+                    case 1:
+                        actions.GetInfoResult();
+                        break;
+                    case 2:
+                        actions.GetWarningResult();
+                        break;
+                    case 3:
+                        actions.GetErrorResult();
+                        break;
+                }
             }
-
-            if (result.Status == false)
+            catch (BussinessException ex)
             {
-                logger.LogRecording(LogEnum.Error, "Action failed by а reason: " + result.Message);
+                logger.LogRecording(LogEnum.Warning, $"Action got this custom Exception: {ex.Message}");
             }
-
+            catch (Exception ex)
+            {
+                logger.LogRecording(LogEnum.Error, $"Action failed by reason: {ex}");
+            }
         }
 
         logger.SaveAllLogsToFile();

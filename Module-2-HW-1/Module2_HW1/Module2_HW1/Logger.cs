@@ -6,10 +6,12 @@ public class Logger
 {
     private static Logger _instance;
     private StringBuilder _logs;
+    private FileService _fileService;
 
     private Logger()
     {
         _logs = new StringBuilder();
+        _fileService = new FileService();
     }
 
     public static Logger GetInstance()
@@ -36,7 +38,10 @@ public class Logger
 
     public void SaveAllLogsToFile()
     {
-        File.WriteAllText("log.txt", _logs.ToString());
+        string folderName = "D:\\Projects\\HomeWorkRepo\\Module-2-HW-1\\Module2_HW1\\Module2_HW1\\Logs\\";
+        string fileName = $"Logs.{DateTime.Now.Hour}.{DateTime.Now.Minute}.{DateTime.Now.Second}.txt";
+
+        _fileService.CreateFile(folderName, fileName, GetAllLogs()); 
     }
 }
 

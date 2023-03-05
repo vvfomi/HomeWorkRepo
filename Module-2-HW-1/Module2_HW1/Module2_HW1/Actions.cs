@@ -3,42 +3,34 @@
 public class Actions
 {
 
-    public Result GetInfoResult()
+    public bool GetInfoResult()
     {
-        Result result = new Result();
-        result.Message = "Start method:";
+        var message = "Start method:";
 
-        result.Status = true;
+        bool getInfo = true;
 
         var logger = Logger.GetInstance();
-        logger.LogRecording(LogEnum.Info, result.Message);
+        logger.LogRecording(LogEnum.Info, message);
 
-        return result;
+        return getInfo;
     }
 
-    public Result GetWarningResult()
+    public bool GetWarningResult()
     {
-        Result result = new Result();
-        result.Message = "Skipped logic in method:";
+        var message = "Skipped logic in method:";
+        throw new BussinessException(message);
 
-        result.Status = true;
 
-        var logger = Logger.GetInstance();
-        logger.LogRecording(LogEnum.Warning, result.Message);
-
-        return result;
+        return false;
     }
 
-    public Result GetErrorResult()
+    public bool GetErrorResult()
     {
-        Result result = new Result();
-        result.Message = "I broke a logic:";
 
-        result.Status = false;
+        var message = "I broke a logic:";
+        throw new Exception(message);
 
-        var logger = Logger.GetInstance();
-        logger.LogRecording(LogEnum.Error, result.Message);
 
-        return result;
+        return false;
     }
 }
